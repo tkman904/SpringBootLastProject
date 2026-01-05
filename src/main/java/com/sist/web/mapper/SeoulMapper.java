@@ -12,18 +12,37 @@ import com.sist.web.vo.*;
 @Repository
 public interface SeoulMapper {
 	/*
-      <select id="seoulLocationListData" resultMap="locationMap" parameterType="int">
-	    SELECT st.no, st.contentid, hit, title, image1, address, msg, restdate, usetime, parking
-	    FROM seoultravel st JOIN attraction at
-	    ON st.contentid = at.contentid
-	    ORDER BY st.no ASC
+	  <select id="seoulListData" resultType="com.sist.web.vo.SeoulVO" parameterType="hashmap">
+	    SELECT no, contentid, hit, title, image1, address
+	    FROM seoultravel
+	    WHERE contenttype = #{contenttype}
+	    ORDER BY no ASC
 	    OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY 
 	  </select>
 	 */
-	public List<SeoulVO> seoulLocationListData(int start);
+	public List<SeoulVO> seoulListData(Map map);
 	
 	@Select("SELECT CEIL(COUNT(*)/12.0) "
 			+ "FROM seoultravel "
-			+ "WHERE contenttype = 12")
-	public int seoulLocationTotalPage();
+			+ "WHERE contenttype = #{contenttype}")
+	public int seoulTotalPage(int contenttype);
+	
+	/*
+      <select id="seoulAttractionDetailData" resultMap="attMap" parameterType="int">
+	    SELECT s.no, title, image1, address, x, y, infocenter, restdate, usetime, parking, msg
+	    FROM seoultravel s JOIN attraction a
+	    ON s.contentid = a.contentid
+	    AND s.contentid = #{contentid}
+	  </select>
+	 */
+	public SeoulVO seoulAttractionDetailData(int contentid);
+	
+	/*
+      <update id="seoulHitIncrement" parameterType="int">
+	    UPDATE seoultravel SET
+	    hit = hit+1
+	    WHERE contentid = #{contentid}
+	  </update>
+	 */
+	public void seoulHitIncrement(int contentid);
 }

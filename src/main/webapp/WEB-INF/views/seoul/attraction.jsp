@@ -13,7 +13,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>Food Store</h2>
+                        <h2>${vo.title}</h2>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,48 @@
     <section class="archive-area section_padding_80">
         <div class="container">
             <div class="row">
-				
+				<table class="table">
+					<tbody>
+						<tr>
+							<td width="30%" class="text-center" rowspan="6">
+								<img src="${vo.image1}" style="width: 100%; height: 300px;">
+							</td>						
+							<td colspan="2"><h3>${vo.title}</h3></td>
+						</tr>
+						<tr>
+							<td width="15%" class="text-center">주소</td>
+							<td width="55%">${vo.address}</td>
+						</tr>
+						<tr>
+							<td width="15%" class="text-center">안내</td>
+							<td width="55%">${vo.avo.infocenter}</td>
+						</tr>
+						<tr>
+							<td width="15%" class="text-center">이용시간</td>
+							<td width="55%">${vo.avo.usetime}</td>
+						</tr>
+						<tr>
+							<td width="15%" class="text-center">휴무일</td>
+							<td width="55%">${vo.avo.restdate}</td>
+						</tr>
+						<tr>
+							<td width="15%" class="text-center">주차</td>
+							<td width="55%">${vo.avo.parking}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>${vo.avo.msg}</td>
+						</tr>
+						<tr>
+							<td class="text-right">
+								<a href="javascript:history.back()" class="btn btn-sm btn-danger">목록</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</section>

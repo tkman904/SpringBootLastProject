@@ -21,7 +21,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>서울 관광지</h2>
+                        <h2>${name}</h2>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,9 @@
 	                    <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
 	                        <!-- Post Thumb -->
 	                        <div class="post-thumb">
-	                            <img src="${vo.image1}" style="width: 350px; height: 240px;">
+	                        	<a href="/busan/detail_before?contentid=${vo.contentid}">
+	                            	<img src="${vo.image1}" style="width: 350px; height: 240px;">
+	                            </a>
 	                        </div>
 	                        <!-- Post Content -->
 	                        <div class="post-content">
@@ -65,7 +67,7 @@
 	                                    </div>
 	                                    <!-- Post Date -->
 	                                    <div class="post-date">
-	                                        <a href="#">${vo.lvo.usetime}</a>
+	                                        <a href="#"></a>
 	                                    </div>
 	                                </div>
 	                                <!-- Post Comment & Share Area -->
@@ -84,7 +86,7 @@
 	                                    </div>
 	                                </div>
 	                            </div>
-	                            <a href="#">
+	                            <a href="/busan/detail_before?contentid=${vo.contentid}">
 	                                <h4 class="post-headline">${vo.title}</h4>
 	                            </a>
 	                        </div>
@@ -99,17 +101,17 @@
                             <ul class="pagination">
                             	<c:if test="${startPage>1}">
 	                            	<li class="page-item">
-	                                    <a class="page-link" href="/seoul/location?page=${startPage-1}">이전<i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+	                                    <a class="page-link" href="/busan/list?page=${startPage-1}&cno=${cno}">이전<i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 	                                </li>
                                 </c:if>
                                 <c:forEach var="i" begin="${startPage}" end="${endPage}">
 	                                <li class="page-item ${i == curpage ? 'active' : ''}">
-	                                    <a class="page-link" href="/seoul/location?page=${i}">${i}</a>
+	                                    <a class="page-link" href="/busan/list?page=${i}&cno=${cno}">${i}</a>
 	                                </li>
                                 </c:forEach>
                                 <c:if test="${endPage<totalpage}">
 	                                <li class="page-item">
-	                                    <a class="page-link" href="/seoul/location?page=${endPage+1}">다음<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+	                                    <a class="page-link" href="/busan/list?page=${endPage+1}&cno=${cno}">다음<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 	                                </li>
                                 </c:if>
                             </ul>
