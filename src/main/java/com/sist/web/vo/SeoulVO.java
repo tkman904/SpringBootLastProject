@@ -20,4 +20,5 @@ public class SeoulVO {
 	private int no, contentid, contenttype, hit;
 	private String title, image1, image2, address;
 	private double x, y;
+	private SeoulLocationVO lvo = new SeoulLocationVO();
 }
