@@ -81,4 +81,11 @@ public class JejuController {
 		// include가 되는 파일을 올린다 => request를 공유할 수 있다
 		return "main/main";
 	}
+	
+	@GetMapping("/jeju/find")
+	public String jeju_find(Model model) {
+		model.addAttribute("main_jsp", "../jeju/jeju_find.jsp");
+		
+		return "main/main";
+	}
 }

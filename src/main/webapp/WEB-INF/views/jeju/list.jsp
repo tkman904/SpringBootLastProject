@@ -67,7 +67,7 @@
 	                                    </div>
 	                                    <!-- Post Date -->
 	                                    <div class="post-date">
-	                                        <a href="#"></a>
+	                                        <a href="#">-</a>
 	                                    </div>
 	                                </div>
 	                                <!-- Post Comment & Share Area -->
