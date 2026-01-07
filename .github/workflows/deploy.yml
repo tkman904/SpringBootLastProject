@@ -32,7 +32,7 @@ jobs:
     - name: Set SSH key permission
       run: |
         mkdir -p ~/.ssh
-        echo "${{secrets.SERVER_SSH_KEY}}" > ~/.ssh/id_rsa
+        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpxekxt40jJIx+sM0x7w/BEGy+4jyN9rk2VQbfE7etf3SNOSvI100q2jpEYdBo23MgQ5AUyTrPjLDNejaJmDZ1fpeMREBKbbsb/YP88g3Zth7WF             4/VLWfJnB3r752PgSm4E2tTWbg5fnhNB0kLtpama2A7fNaGy3ZBFMLjILI03YPS05pRYNNvbAhxV+qfbnC8e/SlA/Dg8STfFCpGxWw6yGu3NctXiWCuGZpmlUQRmoauSEjgvc+endlSUKWSNeabJB             4Y8ysPW6wbS5PeGK37Y3WztCmRap6No5CwAX5scWFK2sAcsh4CJ650DBjvUn4bNXhFOw5ei54RrRvUUaAXBdKwn1ZUgsW8U5TTLy8Y5sextEWQMlCipyj4/l7FBVY21GmUBOD1xX0VK8zj1R1v0hh             WXxU62EYNFNxGxudR2G/oohxumLFMF97gS8wniQJ+2ny77mkQVIlkahkXq9FJGh1PHs12AnmaCjVhfwxbpWHxHEJuuzfxPE0XhUFclKM= ubuntu@ip-172-31-40-36" >> ~/.ssh/authorized_keys
         chmod 600 ~/.ssh/id_rsa
     - name: Add SSH Key
       uses: webfactory/ssh-agent@v0.5.3
