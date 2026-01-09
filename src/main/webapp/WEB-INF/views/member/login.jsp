@@ -40,36 +40,38 @@
     <section class="archive-area section_padding_80" id="join_section">
         <div class="container" style="max-width: 300px; margin-top: 40px;">
         	<div class="row justify-content-center">
-        		<table class="table">
-        			<tbody>
-        				<tr>
-        					<th class="text-center" width="20%">ID</th>
-        					<td width="80%">
-        						<input type="text" size="27" class="input-sm">
-        					</td>
-        				</tr>
-        				<tr>
-        					<th class="text-center" width="20%">PW</th>
-        					<td width="80%">
-        						<input type="password" size="27" class="input-sm">
-        					</td>
-        				</tr>
-        				<tr>
-        					<td colspan="2">
-        						<input type="checkbox" name="remember-me">&nbsp;자동로그인
-        					</td>
-        				</tr>
-        				<tr>
-        					<td colspan="2" style="color: red;">${message}</td>
-        				</tr>
-        				<tr>
-        					<td colspan="2">
-        						<button type="button" class="btn-sm btn-warning">로그인</button>
-        						<button type="button" class="btn-sm btn-danger" onclick="javascript:history.back()">취소</button>
-        					</td>
-        				</tr>
-        			</tbody>
-        		</table>
+        		<form action="/member/login_process" method="post">
+	        		<table class="table">
+	        			<tbody>
+	        				<tr>
+	        					<th class="text-center" width="20%">ID</th>
+	        					<td width="80%">
+	        						<input type="text" size="27" class="input-sm" name="userid" required="required">
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<th class="text-center" width="20%">PW</th>
+	        					<td width="80%">
+	        						<input type="password" size="27" class="input-sm" name="userpwd" required="required">
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td colspan="2">
+	        						<input type="checkbox" name="remember-me">&nbsp;자동로그인
+	        					</td>
+	        				</tr>
+	        				<tr>
+	        					<td colspan="2" style="color: red;">${message}</td>
+	        				</tr>
+	        				<tr>
+	        					<td colspan="2">
+	        						<button type="submit" class="btn-sm btn-warning">로그인</button>
+	        						<button type="button" class="btn-sm btn-danger" onclick="javascript:history.back()">취소</button>
+	        					</td>
+	        				</tr>
+	        			</tbody>
+	        		</table>
+        		</form>
         	</div>
 		</div>
 	</section>

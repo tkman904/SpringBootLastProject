@@ -35,4 +35,5 @@ public interface SeoulService {
 	public List<SeoulVO> seoulFindData(Map map);
 	public int seoulFindTotalPage(String address);
 	public List<SeoulVO> seoulTop5Data();
+	public SeoulVO seoulFestivalDetailData(int contentid);
 }

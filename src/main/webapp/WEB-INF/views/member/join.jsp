@@ -43,110 +43,122 @@
     <!-- ****** Breadcumb Area End ****** -->
 
     <!-- ****** Archive Area Start ****** -->
-    <section class="archive-area section_padding_80" id="join_section">
-        <div class="container" style="max-width: 800px; margin-top: 40px;">
-             <div class="panel panel-pastel">
-			    <div class="panel-heading text-center">
-			      <span class="glyphicon glyphicon-leaf"></span>
-			    </div>
-			    <div class="panel-body">
-			    <form name="frm" ref="frm" method="post" action="/member/join_ok">
-			      <table class="table table-bordered table-hover">
-			        <tr>
-			          <th class="text-center" width="20%">ID</th>
-			          <td>
-			            <div class="form-inline">
-			              <input type="text" v-model="userid" name="userid" ref="userid" class="form-control input-sm" placeholder="아이디를 입력하세요" v-bind:readonly="isReadOnly">
-			              <button type="button" class="btn btn-mint btn-sm" @click="idCheck()">중복체크</button>
-			              <span style="color: red; margin-left: 10px; font-size: 12px;">{{idOk}}</span>
-			            </div>
-			          </td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">Password</th>
-			          <td>
-			            <div class="form-inline">
-			              <input type="password" v-model="userpwd" name="userpwd" ref="userpwd" class="form-control input-sm" placeholder="비밀번호">
-			              <input type="password" v-model="userpwd2" name="userpwd2" ref="userpwd2" class="form-control input-sm" placeholder="비밀번호 재입력">
-			            </div>
-			          </td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">이름</th>
-			          <td><input type="text" v-model="username" name="username" ref="username" class="form-control input-sm" placeholder="이름 입력"></td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">성별</th>
-			          <td>
-			            <label class="radio-inline"><input type="radio" name="sex" value="남자" checked> 남자</label>
-			            <label class="radio-inline"><input type="radio" name="sex" value="여자"> 여자</label>
-			          </td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">생년월일</th>
-			          <td><input type="date" v-model="birthday" name="birthday" ref="birthday" class="form-control input-sm"></td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">이메일</th>
-			          <td><input type="text" v-model="email" name="email" class="form-control input-sm" placeholder="example@email.com"></td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">우편번호</th>
-			          <td>
-			            <div class="form-inline">
-			              <input type="text" ref="post" v-model="post" name="post" class="form-control input-sm" readonly>
-			              <button type="button" @click="postFind()" id="postBtn" class="btn btn-pink btn-sm">우편번호검색</button>
-			            </div>
-			          </td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">주소</th>
-			          <td><input type="text" ref="addr1" v-model="addr1" name="addr1" class="form-control input-sm" readonly></td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">상세주소</th>
-			          <td><input type="text" v-model="addr2" name="addr2" class="form-control input-sm"></td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">전화번호</th>
-			          <td>
-			            <div class="form-inline">
-			              <select v-model="phone1" name="phone1" class="form-control input-sm">
-			                <option>010</option>
-			                <option>011</option>
-			                <option>016</option>
-			              </select>
-			              <input type="text" v-model="phone2" name="phone2" class="form-control input-sm" placeholder="####-####">
-			            </div>
-			          </td>
-			        </tr>
-			
-			        <tr>
-			          <th class="text-center">소개</th>
-			          <td><textarea rows="5" v-model="content" name="content" class="form-control input-sm" placeholder="자기소개를 입력하세요"></textarea></td>
-			        </tr>
-			
-			        <tr>
-			          <td colspan="2" class="text-center">
-			            <button type="button" class="btn btn-mint btn-sm" @click="join()">회원가입</button>
-			            <button type="button" class="btn btn-pink btn-sm" onclick="history.back()">취소</button>
-			          </td>
-			        </tr>
-			      </table>
-			    </form>
-			    </div>
-			  </div>
-            </div>
-    </section>
+	<section class="archive-area section_padding_80" id="join_section">
+		<div class="container" style="max-width: 800px; margin-top: 40px;">
+			<div class="panel panel-pastel">
+				<div class="panel-heading text-center">
+					<span class="glyphicon glyphicon-leaf"></span>
+				</div>
+				<div class="panel-body">
+					<form name="frm" ref="frm" method="post" action="/member/join_ok">
+						<table class="table table-bordered table-hover">
+							<tr>
+								<th class="text-center" width="20%">ID</th>
+								<td>
+									<div class="form-inline">
+										<input type="text" v-model="userid" name="userid" ref="userid" class="form-control input-sm" placeholder="아이디를 입력하세요" v-bind:readonly="isReadOnly">
+										<button type="button" class="btn btn-mint btn-sm" @click="idCheck()">중복체크</button>
+										<span style="color: red; margin-left: 10px; font-size: 12px;">{{idOk}}</span>
+									</div>
+								</td>
+							</tr>
+	
+							<tr>
+								<th class="text-center">Password</th>
+								<td>
+									<div class="form-inline">
+										<input type="password" v-model="userpwd" name="userpwd" ref="userpwd" class="form-control input-sm" placeholder="비밀번호">
+										<input type="password" v-model="userpwd2" name="userpwd2" ref="userpwd2" class="form-control input-sm" placeholder="비밀번호 재입력">
+									</div>
+								</td>
+							</tr>
+	
+							<tr>
+								<th class="text-center">이름</th>
+								<td>
+									<input type="text" v-model="username" name="username" ref="username" class="form-control input-sm" placeholder="이름 입력">
+								</td>
+							</tr>
+	
+							<tr>
+								<th class="text-center">성별</th>
+								<td>
+									<label class="radio-inline"><input type="radio" name="sex" value="남자" checked> 남자</label>
+									<label class="radio-inline"><input type="radio" name="sex" value="여자"> 여자</label>
+								</td>
+							</tr>
+	
+							<tr>
+								<th class="text-center">생년월일</th>
+								<td>
+									<input type="date" v-model="birthday" name="birthday" ref="birthday" class="form-control input-sm">
+								</td>
+							</tr>
+							
+							<tr>
+								<th class="text-center">이메일</th>
+								<td>
+									<input type="text" v-model="email" name="email" class="form-control input-sm" placeholder="example@email.com">
+								</td>
+							</tr>
+							
+							<tr>
+								<th class="text-center">우편번호</th>
+								<td>
+									<div class="form-inline">
+										<input type="text" ref="post" v-model="post" name="post" class="form-control input-sm" readonly>
+										<button type="button" @click="postFind()" id="postBtn" class="btn btn-pink btn-sm">우편번호검색</button>
+									</div>
+								</td>
+							</tr>
+							
+							<tr>
+								<th class="text-center">주소</th>
+								<td>
+									<input type="text" ref="addr1" v-model="addr1" name="addr1" class="form-control input-sm" readonly>
+								</td>
+							</tr>
+							
+							<tr>
+								<th class="text-center">상세주소</th>
+								<td>
+									<input type="text" v-model="addr2" name="addr2" class="form-control input-sm">
+								</td>
+							</tr>
+							
+							<tr>
+								<th class="text-center">전화번호</th>
+								<td>
+									<div class="form-inline">
+										<select v-model="phone1" name="phone1" class="form-control input-sm">
+											<option>010</option>
+											<option>011</option>
+											<option>016</option>
+										</select>
+										<input type="text" v-model="phone2" name="phone2" class="form-control input-sm" placeholder="####-####">
+									</div>
+								</td>
+							</tr>
+							
+							<tr>
+								<th class="text-center">소개</th>
+								<td>
+									<textarea rows="5" v-model="content" name="content" class="form-control input-sm" placeholder="자기소개를 입력하세요"></textarea>
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan="2" class="text-center">
+									<button type="button" class="btn btn-mint btn-sm" @click="join()">회원가입</button>
+									<button type="button" class="btn btn-pink btn-sm" onclick="history.back()">취소</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
     <script>
     	let joinApp = Vue.createApp({
     		data() {

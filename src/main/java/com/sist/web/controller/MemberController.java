@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sist.web.service.MemberService;
 import com.sist.web.vo.MemberVO;
@@ -35,7 +36,7 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
-	@GetMapping("/member/login")
+	@RequestMapping("/member/login")
 	public String member_login(Model model) {
 		model.addAttribute("main_jsp", "../member/login.jsp");
 		

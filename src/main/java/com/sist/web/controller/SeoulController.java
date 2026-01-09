@@ -103,15 +103,20 @@ public class SeoulController {
 	@GetMapping("/seoul/detail")
 	public String seoul_detail(@RequestParam("contentid") int contentid, @RequestParam("contenttype") int contenttype, Model model) {
 		String jsp = "";
+		
 		if(contenttype == 12) {
 			SeoulVO vo = sService.seoulAttractionDetailData(contentid);
 			model.addAttribute("vo", vo);
+			
 			jsp = "../seoul/attraction.jsp";
 		}
 		else if(contenttype == 14) {
 			jsp = "../seoul/culture.jsp";
 		}
 		else if(contenttype == 15) {
+			SeoulVO vo = sService.seoulFestivalDetailData(contentid);
+			model.addAttribute("vo", vo);
+			
 			jsp = "../seoul/festival.jsp";
 		}
 		else if(contenttype == 32) {
