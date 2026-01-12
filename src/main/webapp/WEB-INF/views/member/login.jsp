@@ -61,10 +61,10 @@
 	        					</td>
 	        				</tr>
 	        				<tr>
-	        					<td colspan="2" style="color: red;">${message}</td>
+	        					<td colspan="2" style="color: red; border: none;">${message}</td>
 	        				</tr>
-	        				<tr>
-	        					<td colspan="2">
+	        				<tr class="text-center">
+	        					<td colspan="2" style="border: none;">
 	        						<button type="submit" class="btn-sm btn-warning">로그인</button>
 	        						<button type="button" class="btn-sm btn-danger" onclick="javascript:history.back()">취소</button>
 	        					</td>
