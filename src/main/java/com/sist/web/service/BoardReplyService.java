@@ -9,4 +9,5 @@ public interface BoardReplyService {
 	public int boardReplyCount(int bno);
 	public void boardReplyInsert(BoardReplyVO vo);
 	public void boardReplyDelete(int no);
+	public void boardReplyUpdate(BoardReplyVO vo);
 }
