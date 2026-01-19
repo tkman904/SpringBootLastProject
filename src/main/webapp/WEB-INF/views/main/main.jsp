@@ -21,7 +21,7 @@
 
     <!-- Responsive CSS -->
     <link href="/css/responsive/responsive.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- Script -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
    	<script src="https://unpkg.com/vue-demi"></script>

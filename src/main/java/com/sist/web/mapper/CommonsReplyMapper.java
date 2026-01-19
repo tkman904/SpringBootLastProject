@@ -15,7 +15,7 @@ import com.sist.web.vo.*;
 @Mapper
 @Repository
 public interface CommonsReplyMapper {
-	@Select("SELECT no, cno, id, name, msg, sex, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:SS') AS dbday, group_tab "
+	@Select("SELECT no, cno, id, name, msg, sex, TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI:SS') AS dbday, group_tab, group_id "
 			+ "FROM commonsReply_1 "
 			+ "WHERE cno = #{cno} "
 			+ "ORDER BY group_id DESC, group_step ASC "
@@ -32,7 +32,7 @@ public interface CommonsReplyMapper {
 			+ "(SELECT NVL(MAX(group_id)+1, 1) FROM commonsReply_1))")
 	public void commonsReplyInsert(CommonsReplyVO vo);
 	
-	@Select("SELECT root, depth FROM commonsReply_1 "
+	@Select("SELECT root, depth, group_id, group_step FROM commonsReply_1 "
 			+ "WHERE no = #{no}")
 	public CommonsReplyVO commonsInfoData(int no);
 	
@@ -43,10 +43,35 @@ public interface CommonsReplyMapper {
 	
 	@Delete("DELETE FROM commonsReply_1 "
 			+ "WHERE no = #{no}")
-	public void commonsReplyDelete(int no);
+	public void commonsMyReplyDelete(int no);
+	
+	@Delete("DELETE FROM commonsReply_1 "
+			+ "WHERE group_id = #{group_id}")
+	public void commonsAllReplyDelete(int group_id);
 	
 	@Update("UPDATE commonsReply_1 SET "
 			+ "depth = depth-1 "
 			+ "WHERE no = #{no}")
 	public void commonsDepthDecrement(int no);
+	
+	@Select("SELECT group_id, group_step, group_tab "
+			+ "FROM commonsReply_1 "
+			+ "WHERE no = #{no}")
+	public CommonsReplyVO commonsReplyParentData(int no);
+	
+	@Update("UPDATE commonsReply_1 SET "
+			+ "group_step = group_step+1 "
+			+ "WHERE group_id = #{group_id} "
+			+ "AND group_step > #{group_step}")
+	public void commonsGroupStepIncrement(CommonsReplyVO vo);
+	
+	@Insert("INSERT INTO commonsReply_1 "
+			+ "VALUES(cs1_no_seq.nextval, #{cno}, #{id}, #{name}, #{sex}, #{msg}, "
+			+ "#{group_id}, #{group_step}, #{group_tab}, #{root}, 0, SYSDATE)")
+	public void commonsReplyReplyInsert(CommonsReplyVO vo);
+	
+	@Update("UPDATE commonsReply_1 SET "
+			+ "depth = depth+1 "
+			+ "WHERE no = #{no}")
+	public void commonsDepthIncrement(int no);
 }
