@@ -72,7 +72,7 @@
                 <!-- Logo Area Start -->
                 <div class="col-12">
                     <div class="logo_area text-center">
-                        <a href="/main" class="yummy-logo">Seoul Busan Jeju Travel</a>
+                        <a href="/main" class="yummy-logo">Seoul Busan Jeju Travel - CICD</a>
                     </div>
                 </div>
             </div>
