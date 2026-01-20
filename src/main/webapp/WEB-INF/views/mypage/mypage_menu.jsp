@@ -12,7 +12,7 @@
 			<h3 class="panel-title">회원 정보</h3>
 		</div>
 		<ul class="list-group">
-			<li class="list-group-item"><a href="#">예약 내역</a></li>
+			<li class="list-group-item"><a href="/mypage/mypage_reserve">예약 내역</a></li>
 			<li class="list-group-item"><a href="#">결제 내역</a></li>
 			<li class="list-group-item"><a href="#">정보 확인</a></li>
 			<li class="list-group-item"><a href="#">회원 탈퇴</a></li>

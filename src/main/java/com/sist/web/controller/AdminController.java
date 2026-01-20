@@ -13,4 +13,12 @@ public class AdminController {
 		
 		return "main/main";
 	}
+	
+	@GetMapping("/admin/admin_reserve")
+	public String admin_reserve(Model model) {
+		model.addAttribute("admin_jsp", "../admin/admin_reserve.jsp");
+		model.addAttribute("main_jsp", "../admin/admin_main.jsp");
+		
+		return "main/main";
+	}
 }

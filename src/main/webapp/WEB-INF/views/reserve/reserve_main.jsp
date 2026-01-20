@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <style>
 .card {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -29,6 +30,23 @@
 
 img#food_poster {
 	border-radius: 8px;
+}
+
+.r_select {
+	min-height: 38px;
+	font-size: 14px;
+	border-radius: 6px;
+	border: 1px solid #ddd;
+}
+
+.r_select:hover {
+	border-color: #5cb85c;
+	box-shadow: 0 0 5px rgba(92, 184, 92, 0.4)
+}
+
+.link:hover {
+	cursor: pointer;
+	background-color: #FC59;
 }
 </style>
 </head>
@@ -60,7 +78,7 @@ img#food_poster {
     </div>
     <!-- ****** Breadcumb Area End ****** -->
     <!-- ****** Archive Area Start ****** -->
-    <section class="archive-area section_padding_80">
+    <section class="archive-area section_padding_80" id="reserve_app">
 		<div class="container my-4">
 			<div class="row g-4">
 				<!-- 맛집 정보 -->
@@ -68,7 +86,29 @@ img#food_poster {
 					<div class="card h-100">
 						<div class="card-header bg-danger text-white text-center">맛집 정보</div>
 						<div class="card-body" id="food_list">
-						
+							<table class="table">
+								<tr>
+									<td class="text-center" colspan="2" style="border: none;">
+										<select class="form-control r_select" v-model="store.loc" @change="store.locChange">
+											<option value="all">서울전체</option>
+											<option v-for="d in store.loc_list" :value="d">{{d}}</option>
+										</select>
+									</td>
+								</tr>
+								<tr v-for="(vo, index) in store.food_list" :key="index" class="link" @click="store.foodSelect(vo.contentid, vo.title, vo.image1)">
+									<td>
+										<img :src="vo.image1" style="width: 30px; height: 30px;" class="img-circle">
+									</td>
+									<td>{{vo.title}}</td>
+								</tr>
+								<tr>
+									<td colspan="2" class="text-center">
+										<button type="button" class="btn-xs btn-danger" @click="store.prev()">이전</button>
+										{{store.curpage}} page / {{store.totalpage}} pages
+										<button type="button" class="btn-xs btn-danger" @click="store.next()">다음</button>
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -76,8 +116,10 @@ img#food_poster {
 				<div class="col-md-5">
 					<div class="card h-100">
 						<div class="card-header bg-info text-white text-center">예약일 정보</div>
-						<div class="card-body text-center" id="food_rdays">
-						
+						<div class="card-body text-center" v-show="store.isDate">
+							<div id="calendar">
+							
+							</div>
 						</div>
 					</div>
 				</div>
@@ -87,33 +129,32 @@ img#food_poster {
 						<div class="card-header bg-success text-white text-center">예약 정보</div>
 						<div class="card-body text-center">
 							<img id="food_poster" src="" alt="poster" style="display: none">
-							<table class="table table-borderless text-start" style="display: none" id="reserve_info">
+							<table class="table table-borderless text-start">
 								<tbody>
 									<tr>
+										<td colspan="2" class="text-center">
+											<img :src="store.image" style="width: 300px; height: 200px;">
+										</td>
+									</tr>
+									<tr>
 										<td class="text-muted">업체명</td>
-										<td id="food_name">-</td>
+										<td>{{store.title}}</td>
 									</tr>
 									<tr>
 										<td class="text-muted">예약일</td>
-										<td id="food_reserve_day">-</td>
+										<td>{{store.day}}</td>
 									</tr>
 									<tr>
 										<td class="text-muted">예약시간</td>
-										<td id="food_reserve_time">-</td>
+										<td>{{store.time}}</td>
 									</tr>
 									<tr>
 										<td class="text-muted">예약인원</td>
-										<td id="food_reserve_inwon">-</td>
+										<td>{{store.inwon}}</td>
 									</tr>
 								</tbody>
 							</table>
-							<form method="post" action="../reserve/reserve_insert.do" id="reserveBtn" style="display: none">
-								<input type="hidden" name="fno" id="rfno">
-								<input type="hidden" name="day" id="rdays">
-								<input type="hidden" name="time" id="rtime">
-								<input type="hidden" name="inwon" id="rinwon">
-								<button type="submit" class="btn btn-primary w-100">예약하기</button>
-							</form>
+							<button type="submit" class="btn btn-success w-100" v-if="store.isReserveBtn" @click="store.reserveInsert">예약하기</button>
 						</div>
 					</div>
 				</div>
@@ -123,8 +164,8 @@ img#food_poster {
 					<div class="card">
 						<div class="card-header bg-primary text-white text-center">시간 정보</div>
 						<div class="card-body text-center">
-							<div class="d-flex justify-content-center gap-2 flex-wrap" id="reserve_time2">
-							
+							<div class="d-flex justify-content-center gap-2 flex-wrap" v-show="store.isTime">
+								<span class="btn btn-xs btn-primary" v-for="(t, i) in store.time_list" :key="i" style="margin-left: 2px;" @click="store.timeSelect(t)">{{t}}</span>
 							</div>
 						</div>
 					</div>
@@ -133,8 +174,8 @@ img#food_poster {
 					<div class="card">
 						<div class="card-header bg-info text-white text-center">인원 정보</div>
 						<div class="card-body text-center">
-							<div class="d-flex justify-content-center gap-2 flex-wrap" id="reserve_inwon">
-							
+							<div class="d-flex justify-content-center gap-2 flex-wrap" v-if="store.isInwon">
+								<span class="btn btn-xs" v-for="(t, i) in store.inwon_list" :key="i" style="margin-left: 2px; background-color: #17a2b8" @click="store.inwonSelect(t)">{{t}}</span>
 							</div>
 						</div>
 					</div>
@@ -142,5 +183,47 @@ img#food_poster {
 			</div>
 		</div>
 	</section>
+	<script src="/vue/axios.js"></script>
+	<script src="/vue/reserve/reserveStore.js"></script>
+	<script>
+		const { createApp, onMounted, ref, watch } = Vue
+		const { createPinia } = Pinia
+		const reserveApp = createApp({
+			setup() {
+				const store = useReserveStore()
+				
+				onMounted(()=> {
+					store.dataRecv()
+					
+					watch(()=> store.no, (newVal)=> {
+						if(!newVal) {
+							return
+						}
+						const calendar = new FullCalendar.Calendar(
+								document.getElementById('calendar'), {
+									initialView: 'dayGridMonth',
+									height: 450,
+									validRange: {
+										start: new Date().toISOString().split("T")[0]
+									},
+									dateClick(info) {
+										store.dateSelect(info.dateStr)
+										store.isTime = true
+										store.timeListData()
+									}
+								}
+						)
+						calendar.render()
+					})
+				})
+				
+				return {
+					store
+				}
+			}
+		})
+		reserveApp.use(createPinia())
+		reserveApp.mount('#reserve_app')
+	</script>
 </body>
 </html>
