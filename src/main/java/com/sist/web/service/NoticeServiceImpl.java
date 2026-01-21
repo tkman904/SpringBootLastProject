@@ -1,5 +1,65 @@
 package com.sist.web.service;
 
-public class NoticeServiceImpl {
+import java.util.*;
 
+import org.springframework.stereotype.Service;
+
+import com.sist.web.mapper.*;
+import com.sist.web.vo.*;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class NoticeServiceImpl implements NoticeService {
+	private final NoticeMapper mapper;
+
+	@Override
+	public List<NoticeVO> noticeListData(int start) {
+		// TODO Auto-generated method stub
+		return mapper.noticeListData(start);
+	}
+
+	@Override
+	public int noticeTotalPage() {
+		// TODO Auto-generated method stub
+		return mapper.noticeTotalPage();
+	}
+
+	@Override
+	public void noticeInsert(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		mapper.noticeInsert(vo);
+	}
+
+	@Override
+	public NoticeVO noticeDetailData(int no) {
+		// TODO Auto-generated method stub
+		mapper.hitIncrement(no);
+		return mapper.noticeDetailData(no);
+	}
+
+	@Override
+	public NoticeVO noticeFileInfoData(int no) {
+		// TODO Auto-generated method stub
+		return mapper.noticeFileInfoData(no);
+	}
+
+	@Override
+	public void noticeDelete(int no) {
+		// TODO Auto-generated method stub
+		mapper.noticeDelete(no);
+	}
+
+	@Override
+	public NoticeVO noticeUpdateData(int no) {
+		// TODO Auto-generated method stub
+		return mapper.noticeDetailData(no);
+	}
+
+	@Override
+	public void noticeUpdate(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		mapper.noticeUpdate(vo);
+	}
 }

@@ -1,5 +1,16 @@
 package com.sist.web.service;
 
-public interface NoticeService {
+import java.util.*;
 
+import com.sist.web.vo.*;
+
+public interface NoticeService {
+	public List<NoticeVO> noticeListData(int start);
+	public int noticeTotalPage();
+	public void noticeInsert(NoticeVO vo);
+	public NoticeVO noticeDetailData(int no);
+	public NoticeVO noticeFileInfoData(int no);
+	public void noticeDelete(int no);
+	public NoticeVO noticeUpdateData(int no);
+	public void noticeUpdate(NoticeVO vo);
 }
