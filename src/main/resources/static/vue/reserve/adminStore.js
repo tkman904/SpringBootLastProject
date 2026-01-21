@@ -9,6 +9,26 @@ const useAdminStore = defineStore('admin', {
 			const res = await api.get('/admin/reserve_list_vue/')
 			console.log(res.data)
 			this.reserve_list = res.data
+		},
+		async reserveOk(no, id) {
+			const res = await api.get('/admin/reserve_ok_vue/', {
+				params: {
+					no: no,
+					id: id
+				}
+			})
+			console.log(res.data)
+			this.reserve_list = res.data
+		},
+		async reserveDelete(no, id) {
+			const res = await api.get('/admin/reserve_delete_vue/', {
+				params: {
+					no: no,
+					id: id
+				}
+			})
+			console.log(res.data)
+			this.reserve_list = res.data
 		}
 	}
 })

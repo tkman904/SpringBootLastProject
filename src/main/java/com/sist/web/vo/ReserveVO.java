@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 public class ReserveVO {
-	private int no, cno, isreserve;
+	private int no, cno, isreserve, iscancel;
 	private String id, rday, rtime, rinwon, dbday;
 	private Date regdate;
 	
