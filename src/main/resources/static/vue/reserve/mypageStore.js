@@ -50,6 +50,7 @@ const useMypageStore = defineStore('mypage', {
 			toastMsg.innerText = message
 			toast.classList.add('show')
 			
+			// 3초 후 자동 닫힘
 			setTimeout(()=> {
 				hideToast()
 			}, 5000)			

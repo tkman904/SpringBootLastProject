@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/map.css">
+<link rel="stylesheet" href="/css/toast.css">
 <script>
 const SESSION_ID = '${sessionScope.userid}'
 const CNO = '${param.contentid}'
@@ -217,6 +218,7 @@ const CNO = '${param.contentid}'
 					    </div>
 					</div>
 				</div>
+				<jsp:include page="../commons/toast.jsp"></jsp:include>
 				<script>
 					const { createApp, onMounted, ref } = Vue
 					const { createPinia } = Pinia
@@ -228,6 +230,7 @@ const CNO = '${param.contentid}'
 							onMounted(()=> {
 								store.sessionId = SESSION_ID
 								store.commonsListData(CNO)
+								store.connect(SESSION_ID)
 							}) 
 							
 							return {
